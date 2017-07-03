@@ -15,6 +15,7 @@ export class GumballMachine {
   constructor(
     private gumballsCount:number = 0
   ) {
+    console.log('Instantiated gumball machine')
     if (this.gumballsCount > 0) this.currentState = this.noQuarterState
   }
 
@@ -29,6 +30,10 @@ export class GumballMachine {
     if (this.gumballsCount > 0) this.gumballsCount--
   }
   getCount = () => this.gumballsCount
+  refill = (gumballs: number) => {
+    this.gumballsCount += gumballs
+    if (this.gumballsCount > 0) this.currentState = this.getNoQuarterState()
+  }
 
   setState = (state: StateInterface) => this.currentState = state
   getNoQuarterState = () => this.noQuarterState
